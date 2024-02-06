@@ -2,6 +2,7 @@
 !/.bashrc
 !/.gitignore
 !/.gitconfig
+!/.tmux.conf
 
 !/.config/
 /.config/*

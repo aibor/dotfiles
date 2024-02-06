@@ -1,0 +1,8 @@
+/*
+!/.bashrc
+!/.gitignore
+!/.gitconfig
+
+!/.config/
+/.config/*
+!/.config/alacritty

@@ -1,0 +1,56 @@
+[core]
+  editor = nvim
+  whitespace=-indent-with-non-tab,trailing-space,cr-at-eol
+  pager = delta --light --pager less
+
+[merge]
+  conflictstyle = diff3
+
+[color]
+  ui = true
+
+[alias]
+  br = branch
+  ci = commit
+  ca = commit --amend
+  fix = commit --amend --no-edit
+  co = checkout
+  df = diff
+  dfs = diff --stat
+  dc = diff --cached
+  dcs = diff --cached --stat
+  fap = fetch --all --prune
+  lg = log -p
+  lo = log --oneline -n 10
+  ri = rebase -i
+  ria = rebase -i --autosquash
+  hash = rev-parse HEAD
+  st = status -s
+  sw = switch
+  ss = show --stat
+  who = shortlog -s --
+  tree = log --graph --remotes --branches --tags -10 --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+  find = log --oneline --source --all --name-only -G
+
+[diff "ansible-vault"]
+  textconv = ansible-vault decrypt --output=-
+  cachetextconv = false
+
+[diff]
+  algorithm = patience
+  colorMoved = default
+
+[init]
+  defaultBranch = main
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+
+[interactive]
+  diffFilter = delta --color-only --light --pager less
+
+[rerere]
+  enabled = true
+
+[include]
+  path = .gitconfig.local

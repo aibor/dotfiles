@@ -4,6 +4,7 @@
 !/.gitconfig
 !/.profile
 !/.tmux.conf
+!/.xinitrc
 
 !/.config/
 /.config/*

@@ -24,6 +24,15 @@ action = "Copy"
 key = "C"
 mods = "Control|Alt"
 
+[[keyboard.bindings]]
+action = "None"
+key = "Pause"
+
+[[keyboard.bindings]]
+action = "None"
+key = "Pause"
+mods = "Shift"
+
 [window.padding]
 x = 5
 y = 3

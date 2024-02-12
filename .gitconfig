@@ -25,8 +25,8 @@
   fap = fetch --all --prune
   find = log --oneline --source --all --name-only -G
   lg = log -p
-  lo = log --oneline -n 10
-  tree = log --graph --remotes --branches --tags -10 --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+  lo = log --oneline -n 40
+  tree = log --graph --remotes --branches --tags -20 --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
   pfl = push --force-with-lease
   ri = rebase -i
   ria = rebase -i --autosquash

@@ -27,6 +27,7 @@
   lg = log -p
   lo = log --oneline -n 40
   tree = log --graph --remotes --branches --tags -20 --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+  treo = tree --oneline -n 50
   pfl = push --force-with-lease
   ri = rebase -i
   ria = rebase -i --autosquash

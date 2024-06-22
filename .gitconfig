@@ -37,6 +37,9 @@
   st = status -s
   sw = switch
 
+[branch]
+  sort = -committerdate
+
 [diff "ansible-vault"]
   textconv = ansible-vault decrypt --output=-
   cachetextconv = false

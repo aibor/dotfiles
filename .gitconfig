@@ -4,7 +4,7 @@
   pager = delta --light --pager less
 
 [merge]
-  conflictstyle = diff3
+  conflictStyle = zdiff3
 
 [color]
   ui = true
@@ -28,7 +28,7 @@
   lo = log --oneline -n 40
   tree = log --graph --remotes --branches --tags -20 --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
   treo = tree --oneline -n 50
-  pfl = push --force-with-lease
+  pfl = push --force-with-lease --force-if-includes
   ri = rebase -i
   ria = rebase -i --autosquash
   hash = rev-parse HEAD
@@ -47,6 +47,7 @@
 [diff]
   algorithm = patience
   colorMoved = default
+  submodule = log
 
 [init]
   defaultBranch = main
@@ -59,6 +60,12 @@
 
 [rerere]
   enabled = true
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
 
 [include]
   path = .gitconfig.local

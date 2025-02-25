@@ -1,3 +1,5 @@
+# vim: set ft=gitconfig:
+
 [core]
   editor = nvim
   whitespace=-indent-with-non-tab,trailing-space,cr-at-eol
@@ -40,13 +42,19 @@
 [branch]
   sort = -committerdate
 
+[tag]
+  sort = version:refname
+
 [diff "ansible-vault"]
   textconv = ansible-vault decrypt --output=-
   cachetextconv = false
 
 [diff]
-  algorithm = patience
-  colorMoved = default
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
   submodule = log
 
 [init]
@@ -66,4 +74,11 @@
 
 [fetch]
   prune = true
+  pruneTags = true
+  all = true
 
+[rebase]
+  updateRefs = true
+
+[help]
+  autocorrect = prompt

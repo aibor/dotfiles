@@ -11,6 +11,7 @@
 
 [mergetool]
   keepBackup = false
+  writeToTemp = true
 
 [mergetool "nvimdiff"]
   layout = "LOCAL,REMOTE / MERGED"

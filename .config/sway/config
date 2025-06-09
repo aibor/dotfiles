@@ -1,0 +1,257 @@
+include /etc/sway/config.d/*
+
+### Variables
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Home row direction keys.
+set $homerow_left  h
+set $homerow_down  j
+set $homerow_up    k
+set $homerow_right l
+
+# Container resize step width.
+set $resize 10px or 10ppt
+
+# Outputs
+set $output_left  HDMI-A-1
+set $output_right HDMI-A-2
+
+# Apps
+set $grimshot /usr/share/sway-contrib/grimshot
+
+
+### Output configuration
+
+# You can get the names of your outputs by running: swaymsg -t get_outputs.
+output $output_left  resolution 1920x1080 position 0 0
+output $output_right resolution 1920x1080 position 1920 0
+
+# Assign workspace to a certain output.
+workspace 1  output $output_left
+workspace 2  output $output_right
+workspace 3  output $output_right
+workspace 4  output $output_left
+workspace 5  output $output_right
+workspace 6  output $output_right
+workspace 9  output $output_right
+workspace 10 output $output_right
+
+
+### Input configuration
+
+input type:keyboard {
+     xkb_layout us(altgr-intl),de
+}
+
+
+### Key bindings
+
+# Basics
+bindsym {
+	# Launcher
+	$mod+d exec wofi --show drun,run
+	# Terminal
+	$mod+Return exec alacritty
+
+	# Reload the configuration file.
+	$mod+Shift+c reload
+
+	# Kill focused window.
+	$mod+Shift+q kill
+
+	# Exit sway (logs you out of your Wayland session).
+	$mod+Shift+e exec swaynag \
+		-t warning \
+		-m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
+		-B 'Yes, exit sway' 'swaymsg exit'
+
+	# Lock sway and power down displays. Kills itself on resume.
+	$mod+Escape exec swayidle -w timeout 1 'swaylock -f -KL -c 000000' \
+								 timeout 60 'swaymsg "output * dpms off"' \
+									resume 'swaymsg "output * dpms on"; kill $$PPID'
+
+	# Lock sway suspend/hibernate system.
+	$mod+Delete exec swaylock -f -KL -c 000000 && systemctl hybrid-sleep
+
+	# Switch keyboard layout.
+	$mod+Alt+Space input type:keyboard xkb_switch_layout next 
+}
+
+# Workspaces
+bindsym {
+	# Switch to workspace.
+	$mod+1 workspace number 1
+	$mod+2 workspace number 2
+	$mod+3 workspace number 3
+	$mod+4 workspace number 4
+	$mod+5 workspace number 5
+	$mod+6 workspace number 6
+	$mod+7 workspace number 7
+	$mod+8 workspace number 8
+	$mod+9 workspace number 9
+	$mod+0 workspace number 10
+
+	# Move focused container to workspace.
+	$mod+Shift+1 move container to workspace number 1
+	$mod+Shift+2 move container to workspace number 2
+	$mod+Shift+3 move container to workspace number 3
+	$mod+Shift+4 move container to workspace number 4
+	$mod+Shift+5 move container to workspace number 5
+	$mod+Shift+6 move container to workspace number 6
+	$mod+Shift+7 move container to workspace number 7
+	$mod+Shift+8 move container to workspace number 8
+	$mod+Shift+9 move container to workspace number 9
+	$mod+Shift+0 move container to workspace number 10
+
+	# Move current workspace to output.
+	$mod+comma  move workspace to output left
+	$mod+period move workspace to output right
+}
+
+# Layout stuff
+bindsym {
+	# Switch to split mode.
+	$mod+g splith
+	$mod+v splitv
+	
+	# Switch layout mode.
+	$mod+s layout stacking
+	$mod+w layout tabbed
+	$mod+e layout toggle split
+
+	# Switch between floating and tiled mode.
+	$mod+Shift+space floating toggle
+
+	# Toggle fullscreen mode for the active container.
+	$mod+f fullscreen toggle
+
+	# Swap focus between the tiling area and the floating area.
+	$mod+space focus mode_toggle
+	# Move focus to the parent container
+	$mod+a focus parent
+	# Move focus to the child container
+	$mod+z focus child
+
+	# Move focus around
+	$mod+$homerow_left  focus left
+	$mod+$homerow_right focus right
+	$mod+$homerow_up    focus up
+	$mod+$homerow_down  focus down
+	$mod+Left  focus left
+	$mod+Right focus right
+	$mod+Up    focus up
+	$mod+Down  focus down
+
+	# Move the focused window with the same, but add Shift
+	$mod+Shift+$homerow_left  move left
+	$mod+Shift+$homerow_right move right
+	$mod+Shift+$homerow_up    move up
+	$mod+Shift+$homerow_down  move down
+	$mod+Shift+Left  move left
+	$mod+Shift+Right move right
+	$mod+Shift+Up    move up
+	$mod+Shift+Down  move down
+
+	# Switch to resize mode
+	$mod+r mode "resize"
+}
+mode "resize" {
+	bindsym {
+		$homerow_left  resize shrink width  $resize
+		$homerow_right resize grow   width  $resize
+		$homerow_up    resize shrink height $resize
+		$homerow_down  resize grow   height $resize
+    	Left  resize shrink width  $resize
+    	Right resize grow   width  $resize
+    	Up    resize shrink height $resize
+    	Down  resize grow   height $resize
+
+    	# Return to default mode
+    	Return mode "default"
+    	Escape mode "default"
+	}
+}
+
+# Scratchpad
+bindsym {
+	# Move the currently focused window to the scratchpad
+	$mod+Shift+s move scratchpad
+
+	# Show the next scratchpad window or hide the focused scratchpad window.
+	# If there are multiple scratchpad windows, this command cycles through them.
+	Mod1+z scratchpad show
+}
+
+# Screenshot
+bindsym {
+    # Capture the currently active window
+    $mod+p       exec $grimshot --notify save active
+    # Select and capture a custom rectangular area
+    $mod+Shift+p exec $grimshot --notify save area
+    # Capture the currently active output
+    $mod+Ctrl+p  exec $grimshot --notify save output
+}
+
+# Media keys
+bindsym {
+	XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+	XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+	XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+	XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	XF86AudioPlay exec mpc toggle
+	XF86AudioNext exec mpc next
+	XF86AudioPrev exec mpc previous
+}
+
+
+### Status Bar
+
+bar swaybar_command waybar
+
+
+### Windows
+
+font Inconsolata 10
+hide_edge_borders --i3 none
+titlebar_padding 5 3
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+default_border pixel
+for_window [app_id="pavucontrol"] floating enable
+#for_window [app_id="keepassxc"] floating enable
+for_window [app_id="org.keepassxc.KeePassXC"] floating enable,move scratchpad,scratchpad show
+#for_window [class="^Keepassx$"] floating enable
+for_window [class="^MPlayer$"] floating enable
+for_window [class="^mpv$"] floating enable
+for_window [class="^Viewnior$"] floating enable
+for_window [class="^Vinagre$"] floating enable
+
+# assign window to a certain view
+assign [app_id="firefox"] 1
+assign [app_id="thunderbird"] 2
+assign [app_id="liferea"] 3
+assign [app_id="mpv"] 6
+assign [app_id="org.pwmt.zathura"] 4
+assign [app_id="libreoffice.*"] 8
+assign [app_id="vesktop"] 9
+assign [app_id="chromium"] 10
+
+
+### Autostart
+
+# Notifications
+exec mako
+
+# Apps
+exec liferea
+exec prlimit --rtprio=0 vesktop
+exec firefox
+exec keepassxc

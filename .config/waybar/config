@@ -1,0 +1,29 @@
+[
+	{
+		"output": "HDMI-A-1",
+		"include": [
+			"~/.config/waybar/config.inc"
+		],
+	    "modules-right": [
+			"mpd",
+			"privacy",
+			"pulseaudio",
+			"sway/language",
+			"tray",
+			"clock"
+		]
+	},
+	{
+		"output": "HDMI-A-2",
+		"include": [
+			"~/.config/waybar/config.inc"
+		],
+	    "modules-right": [
+			"systemd-failed-units",
+			"memory",
+			"load",
+			"temperature",
+			"clock"
+		]
+	}
+]

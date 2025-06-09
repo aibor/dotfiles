@@ -1,0 +1,155 @@
+* {
+    font-family: FontAwesome, Cantarell, sans-serif;
+    font-size: 14px;
+	font-weight: bold;
+    color: #ffffff;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.5);
+    border-bottom: 2px solid rgba(100, 114, 125, 0.5);
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -2px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -2px #ffffff;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+    box-shadow: inset 0 -2px #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: #eb4d4b;
+    box-shadow: inset 0 -2px #ffffff;
+}
+
+#clock,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#load
+#mpd {
+    padding: 0 10px;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: #64727D;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+}
+
+#privacy-item.screenshare {
+    background-color: rgba(0x1c, 0xa0, 0x00, 0.5);
+}
+
+#privacy-item.audio-in {
+    background-color: rgba(0xcf, 0x57, 0x00, 0.5);
+}
+
+#privacy-item.audio-out {
+    background-color: rgba(0x00, 0x69, 0xd4, 0.5);
+}
+
+#pulseaudio {
+    background-color: rgba(0xf1, 0xc4, 0x0f, 0.5);
+}
+
+#pulseaudio.source-muted {
+    background-color: transparent;
+}
+
+#temperature.critical {
+    background-color: rgba(0xeb, 0x4d, 0x4b, 0.5);
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(0xeb, 0x4d, 0x4b, 0.5);
+}
+
+#systemd-failed-units.degraded {
+    background-color: rgba(0xeb, 0x4d, 0x4b, 0.5);
+}

@@ -51,7 +51,7 @@ input type:keyboard {
 # Basics
 bindsym {
 	# Launcher
-	$mod+d exec wofi --show drun,run
+	$mod+d exec wofi --show drun,run --matching=fuzzy
 	# Terminal
 	$mod+Return exec alacritty
 

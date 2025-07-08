@@ -79,11 +79,13 @@ button:hover {
 #temperature,
 #network,
 #pulseaudio,
+#systemd-failed-units,
 #tray,
 #mode,
 #load
 #mpd {
     padding: 0 10px;
+    background-color: transparent;
 }
 
 #window,

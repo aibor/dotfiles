@@ -5,6 +5,14 @@
   whitespace=-indent-with-non-tab,trailing-space,cr-at-eol
   pager = delta --light --pager less
 
+[maintenance]
+	# Optimize repos periodically.
+    auto = true
+    strategy = incremental
+
+[init]
+  defaultBranch = main
+
 [merge]
   conflictStyle = zdiff3
   tool = nvimdiff
@@ -17,8 +25,64 @@
   layout = "LOCAL,REMOTE / MERGED"
   trustExitCode = false
 
-[color]
-  ui = true
+[rerere]
+  # Remeber merge conflict resolutions.
+  enabled = true
+  autoUpdate = true
+
+[rebase]
+  # Update all intermediate branches on rebase as well.
+  updateRefs = true
+
+[push]
+  # Automatically create non-existing remote branches
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+  submodule = log
+
+[diff "ansible-vault"]
+  textconv = ansible-vault decrypt --output=-
+  cachetextconv = false
+
+[interactive]
+  diffFilter = delta --color-only --light --pager less
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+
+[help]
+  autocorrect = prompt
+
+[status]
+  # Show branch name when using git status --short.
+  branch = true
+
+[commit]
+  # Diff in commit message template
+  verbose = true
+
+[branch]
+  # Most recent branches first.
+  sort = -committerdate
+
+[tag]
+  # Most recent tags first.
+  sort = -version:refname
+
+[column]
+  # use multiple columns when listing things. 
+  ui = auto
 
 [alias]
   bwc = blame -w -C -C -C
@@ -46,49 +110,6 @@
   hash = rev-parse HEAD
   ss = show --stat
   who = shortlog -s --
-  st = status -s
+  st = status --short
   sw = switch
 
-[branch]
-  sort = -committerdate
-
-[tag]
-  sort = version:refname
-
-[diff "ansible-vault"]
-  textconv = ansible-vault decrypt --output=-
-  cachetextconv = false
-
-[diff]
-  algorithm = histogram
-  colorMoved = plain
-  mnemonicPrefix = true
-  renames = true
-
-  submodule = log
-
-[init]
-  defaultBranch = main
-
-[delta]
-  navigate = true  # use n and N to move between diff sections
-
-[interactive]
-  diffFilter = delta --color-only --light --pager less
-
-[rerere]
-  enabled = true
-
-[push]
-  autoSetupRemote = true
-
-[fetch]
-  prune = true
-  pruneTags = true
-  all = true
-
-[rebase]
-  updateRefs = true
-
-[help]
-  autocorrect = prompt

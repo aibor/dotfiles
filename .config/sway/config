@@ -19,7 +19,7 @@ set $output_left  HDMI-A-1
 set $output_right HDMI-A-2
 
 # Apps
-set $grimshot /usr/share/sway-contrib/grimshot
+set $grimshot grimshot
 
 
 ### Output configuration

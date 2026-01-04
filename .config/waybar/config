@@ -19,6 +19,7 @@
 			"~/.config/waybar/config.inc"
 		],
 	    "modules-right": [
+			"pulseaudio",
 			"systemd-failed-units",
 			"memory",
 			"load",

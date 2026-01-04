@@ -143,13 +143,8 @@ label:focus {
     background-color: rgba(0xeb, 0x4d, 0x4b, 0.5);
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: rgba(0xeb, 0x4d, 0x4b, 0.5);
+#tray menu {
+    background-color: rgba(43, 48, 59, 0.9);
 }
 
 #systemd-failed-units.degraded {

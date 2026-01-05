@@ -22,7 +22,7 @@
   writeToTemp = true
 
 [mergetool "nvimdiff"]
-  layout = "LOCAL,REMOTE / MERGED"
+  layout = "(LOCAL / REMOTE), MERGED"
   trustExitCode = false
 
 [rerere]
